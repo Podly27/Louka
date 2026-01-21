@@ -3,28 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Louka s jednorožcem</title>
+    <title>Louka</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="page">
       <header class="header">
         <div>
-          <h1>Louka s jednorožcem</h1>
+          <h1>Louka</h1>
           <p>
             Klikni na louku a přidej květinu se jménem. Každá květina má 10 stupňů růstu
             a 11. kliknutí ji nechá vykvést. Po vykvetení ji můžeš utrhnout.
           </p>
         </div>
-        <div class="unicorn" aria-hidden="true">
-          <span class="unicorn-body"></span>
-          <span class="unicorn-horn"></span>
-          <span class="unicorn-tail"></span>
-        </div>
       </header>
 
       <section class="meadow-wrapper">
         <div id="meadow" class="meadow" role="button" aria-label="Louka">
+          <div class="unicorn meadow-unicorn" aria-hidden="true">
+            <span class="unicorn-body"></span>
+            <span class="unicorn-horn"></span>
+            <span class="unicorn-tail"></span>
+            <span class="unicorn-leg leg-front"></span>
+            <span class="unicorn-leg leg-back"></span>
+          </div>
           <div class="meadow-hint">Klikni na louku, přidej květinu 🌸</div>
         </div>
       </section>
