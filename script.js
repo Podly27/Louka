@@ -1,6 +1,8 @@
 const meadow = document.getElementById("meadow");
+const meadowMenu = document.getElementById("meadow-menu");
 
 const STORAGE_KEY = "louka-flowers";
+const MOWING_PASSWORD = "unicorn";
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
@@ -16,6 +18,13 @@ const saveFlowers = () => {
   }));
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(flowers));
+};
+
+const clearFlowers = () => {
+  meadow.querySelectorAll(".flower").forEach((flower) => {
+    flower.remove();
+  });
+  saveFlowers();
 };
 
 const loadFlowers = () => {
@@ -124,7 +133,20 @@ const restoreFlowers = () => {
 
 restoreFlowers();
 
+const hideMeadowMenu = () => {
+  meadowMenu.classList.remove("is-visible");
+  meadowMenu.setAttribute("aria-hidden", "true");
+};
+
+const showMeadowMenu = (x, y) => {
+  meadowMenu.style.left = `${x}px`;
+  meadowMenu.style.top = `${y}px`;
+  meadowMenu.classList.add("is-visible");
+  meadowMenu.setAttribute("aria-hidden", "false");
+};
+
 meadow.addEventListener("click", (event) => {
+  hideMeadowMenu();
   const name = window.prompt("Jak se bude květina jmenovat?");
   const trimmedName = name ? name.trim() : "";
   if (!trimmedName) {
@@ -142,3 +164,34 @@ meadow.addEventListener("click", (event) => {
   meadow.appendChild(flower);
   saveFlowers();
 });
+
+meadow.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+  showMeadowMenu(event.clientX, event.clientY);
+});
+
+meadowMenu.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-action]");
+  if (!button) {
+    return;
+  }
+
+  if (button.dataset.action === "mow") {
+    const password = window.prompt("Zadej heslo pro posekání louky:");
+    if (password === MOWING_PASSWORD) {
+      clearFlowers();
+    } else if (password) {
+      window.alert("Nesprávné heslo.");
+    }
+  }
+
+  hideMeadowMenu();
+});
+
+document.addEventListener("click", (event) => {
+  if (!meadowMenu.contains(event.target)) {
+    hideMeadowMenu();
+  }
+});
+
+window.addEventListener("blur", hideMeadowMenu);

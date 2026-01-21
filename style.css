@@ -256,6 +256,37 @@ body {
   font-size: 0.95rem;
 }
 
+.meadow-menu {
+  position: fixed;
+  min-width: 180px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 24px rgba(20, 54, 71, 0.25);
+  display: none;
+  z-index: 10;
+}
+
+.meadow-menu.is-visible {
+  display: block;
+}
+
+.meadow-menu__item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.meadow-menu__item:hover,
+.meadow-menu__item:focus-visible {
+  background: rgba(20, 54, 71, 0.1);
+}
+
 .flower {
   position: absolute;
   display: flex;
@@ -411,6 +442,11 @@ body {
 .flower.plucked .bud,
 .flower.plucked::after {
   opacity: 0;
+}
+
+.flower.plucked .flower-head {
+  opacity: 0;
+  transform: scale(0.4);
 }
 
 @keyframes bloom {
