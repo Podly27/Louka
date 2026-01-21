@@ -13,6 +13,12 @@ const createFlower = (name, x, y) => {
   label.className = "flower-name";
   label.textContent = name;
 
+  const flowerHead = document.createElement("div");
+  flowerHead.className = "flower-head";
+
+  const petals = document.createElement("div");
+  petals.className = "petals";
+
   const bud = document.createElement("div");
   bud.className = "bud";
 
@@ -23,7 +29,10 @@ const createFlower = (name, x, y) => {
   flower.style.top = `${y}%`;
 
   flower.appendChild(label);
-  flower.appendChild(bud);
+  flowerHead.appendChild(petals);
+  flowerHead.appendChild(bud);
+
+  flower.appendChild(flowerHead);
   flower.appendChild(stem);
 
   flower.addEventListener("click", (event) => {

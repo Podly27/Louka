@@ -45,10 +45,10 @@ body {
 
 .unicorn-body {
   position: absolute;
-  inset: 20px 10px 20px 10px;
-  background: #fff4fb;
+  inset: 26px 10px 20px 12px;
+  background: #fff6fd;
   border-radius: 40px;
-  box-shadow: inset 0 -6px 0 #f2b8dd;
+  box-shadow: inset 0 -6px 0 #f2b8dd, 0 6px 14px rgba(255, 182, 227, 0.35);
 }
 
 .unicorn-horn {
@@ -65,12 +65,42 @@ body {
 
 .unicorn-tail {
   position: absolute;
-  left: -8px;
-  top: 42px;
+  left: -12px;
+  top: 46px;
   width: 42px;
   height: 30px;
   background: linear-gradient(120deg, #ff8cc8, #9c7bff);
   border-radius: 50% 60% 40% 60%;
+}
+
+.unicorn-leg {
+  position: absolute;
+  width: 12px;
+  height: 28px;
+  background: linear-gradient(180deg, #f8d4ec, #f3b5d8);
+  border-radius: 10px;
+  bottom: 10px;
+  transform-origin: top center;
+}
+
+.unicorn-leg.leg-front {
+  right: 28px;
+  animation: trot 1.4s ease-in-out infinite;
+}
+
+.unicorn-leg.leg-back {
+  left: 30px;
+  animation: trot 1.4s ease-in-out infinite reverse;
+}
+
+.meadow-unicorn {
+  position: absolute;
+  bottom: 18%;
+  left: 12%;
+  transform: scale(1.1);
+  animation: unicorn-float 4s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
 }
 
 .meadow-wrapper {
@@ -84,19 +114,43 @@ body {
   height: 65vh;
   min-height: 420px;
   border-radius: 32px;
-  background: radial-gradient(circle at top, #aaf37d, #39a43d 70%);
+  background: radial-gradient(circle at top, #bdf7a4 0%, #7bd66d 45%, #2f8f37 100%);
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(35, 80, 40, 0.25);
   cursor: pointer;
+}
+
+.meadow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.15) 8px,
+      rgba(255, 255, 255, 0) 8px,
+      rgba(255, 255, 255, 0) 18px
+    ),
+    radial-gradient(circle at 20% 80%, rgba(22, 92, 30, 0.15), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(18, 70, 24, 0.18), transparent 40%);
+  opacity: 0.9;
+  pointer-events: none;
 }
 
 .meadow::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
-  background-size: 30px 30px;
-  opacity: 0.3;
+  background-image: repeating-linear-gradient(
+      90deg,
+      rgba(17, 95, 25, 0.18) 0px,
+      rgba(17, 95, 25, 0.18) 2px,
+      rgba(17, 95, 25, 0) 2px,
+      rgba(17, 95, 25, 0) 12px
+    ),
+    radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+  background-size: 36px 36px, 30px 30px;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -115,7 +169,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   transform-origin: bottom center;
   transition: transform 0.5s ease;
 }
@@ -128,22 +182,66 @@ body {
   white-space: nowrap;
 }
 
+.flower-head {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+}
+
+.bud {
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 30% 30%, #ffe9f3, #ff9bcc 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.4);
+  transition: transform 0.5s ease, opacity 0.3s ease;
+  z-index: 2;
+}
+
+.petals {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 35%, transparent 36%),
+    radial-gradient(circle at top, #ffd1f0, #ff79b8 65%),
+    conic-gradient(from 0deg, #ff92cf, #ffe0f3, #ff92cf, #ffe0f3, #ff92cf);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  filter: drop-shadow(0 6px 10px rgba(255, 154, 206, 0.35));
+}
+
 .stem {
-  width: 6px;
-  height: 80px;
-  background: linear-gradient(180deg, #66bb6a, #2e7d32);
+  width: 8px;
+  height: 82px;
+  background: linear-gradient(180deg, #7bdc7f, #2e7d32);
   border-radius: 999px;
   position: relative;
 }
 
-.bud {
-  width: 26px;
-  height: 26px;
-  background: #ffd9e8;
-  border-radius: 50%;
-  margin-bottom: -8px;
-  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.4);
-  transition: transform 0.5s ease, opacity 0.3s ease;
+.stem::before,
+.stem::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 12px;
+  background: linear-gradient(120deg, #8eea80, #3aa343);
+  border-radius: 50% 0 50% 0;
+  top: 28px;
+  opacity: 0.9;
+}
+
+.stem::before {
+  left: -16px;
+  transform: rotate(-20deg);
+}
+
+.stem::after {
+  right: -16px;
+  transform: rotate(160deg);
 }
 
 .flower[data-stage="0"] {
@@ -197,6 +295,11 @@ body {
   box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
+.flower.bloomed .petals {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .flower.bloomed::after {
   content: "";
   position: absolute;
@@ -226,6 +329,28 @@ body {
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes unicorn-float {
+  0% {
+    transform: translateY(0) scale(1.1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+  }
+  100% {
+    transform: translateY(0) scale(1.1);
+  }
+}
+
+@keyframes trot {
+  0%,
+  100% {
+    transform: rotate(6deg);
+  }
+  50% {
+    transform: rotate(-6deg);
   }
 }
 
