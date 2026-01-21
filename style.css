@@ -48,19 +48,65 @@ body {
   inset: 26px 10px 20px 12px;
   background: #fff6fd;
   border-radius: 40px;
-  box-shadow: inset 0 -6px 0 #f2b8dd, 0 6px 14px rgba(255, 182, 227, 0.35);
+  box-shadow: inset 0 -6px 0 #f2b8dd, inset 6px 0 0 #ffffff, 0 10px 18px rgba(255, 182, 227, 0.35);
 }
 
 .unicorn-horn {
   position: absolute;
-  top: 6px;
-  right: 42px;
+  top: 2px;
+  right: 40px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 35px solid #ffd36a;
+  border-bottom: 38px solid #ffd36a;
   transform: rotate(20deg);
+  filter: drop-shadow(0 4px 4px rgba(226, 169, 72, 0.35));
+}
+
+.unicorn-ear {
+  position: absolute;
+  top: 12px;
+  right: 58px;
+  width: 18px;
+  height: 26px;
+  background: #fff0f8;
+  border-radius: 60% 60% 40% 40%;
+  transform: rotate(-12deg);
+  box-shadow: inset 0 0 0 2px #f6b9dc;
+}
+
+.unicorn-ear::after {
+  content: "";
+  position: absolute;
+  inset: 4px 4px 6px 4px;
+  background: #ffc3e3;
+  border-radius: 60% 60% 40% 40%;
+  opacity: 0.85;
+}
+
+.unicorn-mane {
+  position: absolute;
+  top: 26px;
+  right: 6px;
+  width: 46px;
+  height: 36px;
+  background: linear-gradient(120deg, #ff7ed2, #9d7bff);
+  border-radius: 60% 40% 60% 40%;
+  transform: rotate(6deg);
+  box-shadow: 0 6px 10px rgba(130, 89, 198, 0.35);
+}
+
+.unicorn-mane::after {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 10px;
+  width: 28px;
+  height: 22px;
+  background: linear-gradient(120deg, #ffb2e6, #7fc5ff);
+  border-radius: 60% 40% 60% 40%;
+  transform: rotate(-18deg);
 }
 
 .unicorn-tail {
@@ -71,6 +117,38 @@ body {
   height: 30px;
   background: linear-gradient(120deg, #ff8cc8, #9c7bff);
   border-radius: 50% 60% 40% 60%;
+  box-shadow: 0 6px 10px rgba(130, 89, 198, 0.3);
+}
+
+.unicorn-eye {
+  position: absolute;
+  top: 44px;
+  right: 34px;
+  width: 8px;
+  height: 8px;
+  background: #4f2c54;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.unicorn-eye::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 3px;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.unicorn-cheek {
+  position: absolute;
+  top: 54px;
+  right: 46px;
+  width: 14px;
+  height: 10px;
+  background: radial-gradient(circle, rgba(255, 156, 200, 0.8), transparent 70%);
 }
 
 .unicorn-leg {
@@ -91,6 +169,17 @@ body {
 .unicorn-leg.leg-back {
   left: 30px;
   animation: trot 1.4s ease-in-out infinite reverse;
+}
+
+.unicorn-leg::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: -2px;
+  width: 16px;
+  height: 8px;
+  background: #f1a8cf;
+  border-radius: 10px;
 }
 
 .meadow-unicorn {
@@ -114,7 +203,7 @@ body {
   height: 65vh;
   min-height: 420px;
   border-radius: 32px;
-  background: radial-gradient(circle at top, #bdf7a4 0%, #7bd66d 45%, #2f8f37 100%);
+  background: radial-gradient(circle at top, #c8f7b6 0%, #7fd77a 55%, #2b8a35 100%);
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(35, 80, 40, 0.25);
   cursor: pointer;
@@ -124,16 +213,18 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-      115deg,
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.15) 8px,
-      rgba(255, 255, 255, 0) 8px,
-      rgba(255, 255, 255, 0) 18px
-    ),
-    radial-gradient(circle at 20% 80%, rgba(22, 92, 30, 0.15), transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(18, 70, 24, 0.18), transparent 40%);
-  opacity: 0.9;
+  background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25), transparent 35%),
+    radial-gradient(circle at 80% 25%, rgba(255, 255, 255, 0.2), transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(34, 112, 40, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(18, 70, 24, 0.2), transparent 40%),
+    repeating-linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.08) 0px,
+      rgba(255, 255, 255, 0.08) 6px,
+      rgba(255, 255, 255, 0) 6px,
+      rgba(255, 255, 255, 0) 20px
+    );
+  opacity: 0.75;
   pointer-events: none;
 }
 
@@ -141,16 +232,17 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-      90deg,
-      rgba(17, 95, 25, 0.18) 0px,
-      rgba(17, 95, 25, 0.18) 2px,
-      rgba(17, 95, 25, 0) 2px,
-      rgba(17, 95, 25, 0) 12px
-    ),
-    radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
-  background-size: 36px 36px, 30px 30px;
-  opacity: 0.35;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+    radial-gradient(circle, rgba(22, 80, 32, 0.2) 2px, transparent 2px),
+    repeating-linear-gradient(
+      95deg,
+      rgba(18, 70, 24, 0.12) 0px,
+      rgba(18, 70, 24, 0.12) 1px,
+      rgba(18, 70, 24, 0) 1px,
+      rgba(18, 70, 24, 0) 14px
+    );
+  background-size: 26px 26px, 40px 40px, 48px 48px;
+  opacity: 0.5;
   pointer-events: none;
 }
 
