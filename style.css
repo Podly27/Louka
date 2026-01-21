@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(180deg, #b8ecff 0%, #f8fdff 50%, #ffffff 100%);
+  color: #143647;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 24px 48px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.header h1 {
+  margin: 0 0 12px;
+  font-size: 2.3rem;
+}
+
+.header p {
+  margin: 0;
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+.unicorn {
+  position: relative;
+  width: 140px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.unicorn-body {
+  position: absolute;
+  inset: 20px 10px 20px 10px;
+  background: #fff4fb;
+  border-radius: 40px;
+  box-shadow: inset 0 -6px 0 #f2b8dd;
+}
+
+.unicorn-horn {
+  position: absolute;
+  top: 6px;
+  right: 42px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 35px solid #ffd36a;
+  transform: rotate(20deg);
+}
+
+.unicorn-tail {
+  position: absolute;
+  left: -8px;
+  top: 42px;
+  width: 42px;
+  height: 30px;
+  background: linear-gradient(120deg, #ff8cc8, #9c7bff);
+  border-radius: 50% 60% 40% 60%;
+}
+
+.meadow-wrapper {
+  flex: 1;
+}
+
+.meadow {
+  position: relative;
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  height: 65vh;
+  min-height: 420px;
+  border-radius: 32px;
+  background: radial-gradient(circle at top, #aaf37d, #39a43d 70%);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(35, 80, 40, 0.25);
+  cursor: pointer;
+}
+
+.meadow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.meadow-hint {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+.flower {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transform-origin: bottom center;
+  transition: transform 0.5s ease;
+}
+
+.flower-name {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.stem {
+  width: 6px;
+  height: 80px;
+  background: linear-gradient(180deg, #66bb6a, #2e7d32);
+  border-radius: 999px;
+  position: relative;
+}
+
+.bud {
+  width: 26px;
+  height: 26px;
+  background: #ffd9e8;
+  border-radius: 50%;
+  margin-bottom: -8px;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.4);
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.flower[data-stage="0"] {
+  transform: scale(0.55);
+}
+
+.flower[data-stage="1"] {
+  transform: scale(0.6);
+}
+
+.flower[data-stage="2"] {
+  transform: scale(0.65);
+}
+
+.flower[data-stage="3"] {
+  transform: scale(0.7);
+}
+
+.flower[data-stage="4"] {
+  transform: scale(0.75);
+}
+
+.flower[data-stage="5"] {
+  transform: scale(0.8);
+}
+
+.flower[data-stage="6"] {
+  transform: scale(0.85);
+}
+
+.flower[data-stage="7"] {
+  transform: scale(0.9);
+}
+
+.flower[data-stage="8"] {
+  transform: scale(0.95);
+}
+
+.flower[data-stage="9"] {
+  transform: scale(1);
+}
+
+.flower[data-stage="10"] {
+  transform: scale(1.05);
+}
+
+.flower.bloomed .bud {
+  width: 34px;
+  height: 34px;
+  background: radial-gradient(circle at top, #ffe2f5, #ff7eb3 70%);
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.flower.bloomed::after {
+  content: "";
+  position: absolute;
+  top: 40px;
+  width: 56px;
+  height: 56px;
+  background: radial-gradient(circle, #ff9ad0 35%, transparent 36%),
+    radial-gradient(circle, #ffd36a 35%, transparent 36%),
+    radial-gradient(circle, #8be9ff 35%, transparent 36%),
+    radial-gradient(circle, #b1ffb0 35%, transparent 36%);
+  background-size: 28px 28px;
+  background-position: 0 0, 28px 0, 0 28px, 28px 28px;
+  border-radius: 50%;
+  animation: bloom 1.2s ease;
+}
+
+.flower.plucked .bud,
+.flower.plucked::after {
+  opacity: 0;
+}
+
+@keyframes bloom {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .meadow {
+    height: 70vh;
+  }
+}
